@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "restaurant-swipe",
+    "slug": "restaurant-swipe",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dalechang.restaurantswipe",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4f44ec18-f454-4c2a-afb7-f301a306b6e7"
+      }
+    },
+    "scheme": "com.supabase",
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ]
+  }
+}

@@ -4,6 +4,7 @@ import { useStorageState } from '../use-storage-state';
 import { supabase } from '../supabase';
 // import { showToast } from '../notifications';
 import { Alert } from 'react-native';
+import { AuthTokenResponsePassword } from '@supabase/supabase-js';
 
 export const AuthContext = createContext<{
   signIn: (email: string, password: string) => void;
@@ -37,17 +38,17 @@ export function SessionProvider({ children }: PropsWithChildren) {
       value={{
         signIn: async (email: string, password: string) => {
           // showToast('signing in')
-          const { data, error } = await supabase.auth.signInWithPassword({
+          const response: AuthTokenResponsePassword = await supabase.auth.signInWithPassword({
             email,
             password,
           })
 
-          if (error) {
-            Alert.alert(error.message)
-            console.warn(error)
-          } else {
-            console.log('sign in data', data)
-            setSession(JSON.stringify(data))
+          if (response.error) {
+            Alert.alert(response.error.message)
+            console.warn(response.error)
+          } else if (response.data.hasOwnProperty('access_token')) {
+            console.log('sign in data', response.data);
+            setSession(JSON.stringify(response.data));
             router.push('/groups');
           }
         },

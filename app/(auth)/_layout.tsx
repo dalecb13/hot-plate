@@ -1,6 +1,4 @@
 import { Stack } from "expo-router";
-import styles from "lib/styles";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const Layout = () => {
   return (

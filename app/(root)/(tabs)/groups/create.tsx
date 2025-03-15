@@ -1,9 +1,10 @@
 import { NativeSyntheticEvent, Text, TextInputChangeEventData, View } from "react-native";
 import { useState } from "react";
 import { Button, Input } from "@rneui/themed";
-import { styles } from "../../../constants/styles";
-import { CreateGroupModel } from "../../../models/group.model";
-import { createGroup } from "../../../api/group.api";
+
+import { CreateGroupModel } from "../../../../models/group.model";
+import { createGroup } from "../../../../api/group.api";
+import { styles } from "../../../../constants/styles";
 
 export default function CreateGroup() {
   const [ groupName, setGroupName ] = useState('');
@@ -12,7 +13,7 @@ export default function CreateGroup() {
     setGroupName(e.nativeEvent.text);
   }
 
-  const handleCreateGrouop = async () => {
+  const handleCreateGroup = async () => {
     const group: CreateGroupModel = {
       groupName,
       groupDetails: {},
@@ -27,7 +28,7 @@ export default function CreateGroup() {
 
       <Input value={groupName} onChange={handleUpdateGroupName} placeholder="Date Night"></Input>
 
-      <Button onPress={handleCreateGrouop}>Create Group</Button>
+      <Button onPress={handleCreateGroup}>Create Group</Button>
     </View>
   )
 }

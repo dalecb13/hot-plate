@@ -17,13 +17,15 @@
       "bundleIdentifier": "com.dalechang.restaurantswipe",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "usesAppleSignIn": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dalechang.restaurantswipe"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -37,7 +39,7 @@
     "plugins": [
       "expo-router",
       "expo-secure-store",
-      "@maplibre/maplibre-react-native"
+      "expo-apple-authentication"
     ]
   }
 }

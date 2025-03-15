@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { JsonView, allExpanded, darkStyles, defaultStyles } from 'react-json-view-lite';
 import 'react-json-view-lite/dist/index.css';
 
-import { Data, getAutoComplete } from "../../../api/restaurants/tripadvisor-com";
+import { Data, getAutoComplete } from "../../../../api/restaurants/tripadvisor-com";
 
 export default function TestHome() {
   const [location, setLocation] = useState('');

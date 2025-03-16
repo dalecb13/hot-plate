@@ -1,8 +1,8 @@
 import { Text } from "@rneui/themed";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { CityModel, CountryModel } from "./models/location.model";
-import { getCities, getCountries } from "./api/location.api";
+import { CityModel, CountryModel } from "../models/location.model";
+import { getCities, getCountries } from "../api/location.api";
 import { Dropdown } from "react-native-element-dropdown";
 
 function countryNameAZ( a: CountryModel, b: CountryModel ) {

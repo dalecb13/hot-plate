@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
   safeAreaStyle: {
     display: 'flex',
     height: '100%',
@@ -10,4 +10,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
+export default globalStyles;

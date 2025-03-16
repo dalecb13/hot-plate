@@ -3,7 +3,7 @@ import { Text, TextInput, Button, View, StyleSheet } from 'react-native'
 import { useSignUp } from '@clerk/clerk-expo'
 import { useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import styles from 'lib/styles'
+import globalStyles from 'lib/styles'
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp()
@@ -67,7 +67,7 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <SafeAreaView style={styles.safeAreaStyle}>
+      <SafeAreaView style={globalStyles.safeAreaStyle}>
         <>
           <Text>Verify your email</Text>
           <TextInput
@@ -82,7 +82,7 @@ export default function SignUpScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.safeAreaStyle}>
+    <SafeAreaView style={globalStyles.safeAreaStyle}>
       <View>
         <>
           <Text style={localStyles.title}>Sign up</Text>

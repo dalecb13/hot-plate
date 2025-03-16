@@ -1,19 +1,16 @@
-import { calculateRegion } from "lib/location";
-import { MarkerData } from "models/location.model";
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
+import React, { useState } from "react";
+import { StyleSheet, TextInput, View } from "react-native";
+import MapView, { PROVIDER_DEFAULT } from "react-native-maps";
 import { useLocationStore } from "store/location";
+import { calculateRegion } from "lib/location";
 
 const Map = () => {
   const {
     userLongitude,
     userLatitude,
   } = useLocationStore();
-  // const { selectedDriver, setDrivers } = useDriverStore();
 
-  // const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
-  const [markers, setMarkers] = useState<MarkerData[]>([]);
+  const [ text, onChangeText ] = useState<string>('');
 
   const region = calculateRegion({
     userLatitude,
@@ -43,8 +40,9 @@ const Map = () => {
       mapType="mutedStandard"
       showsPointsOfInterest={false}
       initialRegion={region}
-      showsUserLocation={true}
+      showsUserLocation={false}
       userInterfaceStyle="light"
+      zoomEnabled={true}
     >
       {/* {markers.map((marker, index) => (
         <Marker
@@ -59,6 +57,13 @@ const Map = () => {
           }
         />
       ))} */}
+      <View style={localStyles.inputWrapper}>
+        <TextInput
+          style={localStyles.input}
+          onChangeText={onChangeText}
+          value={text}
+        />
+      </View>
     </MapView>
   );
 };
@@ -71,5 +76,25 @@ const localStyles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 16,
+  },
+  inputWrapper: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 56,
+    margin: 8,
+    paddingTop: 1,
+    paddingBottom: 1,
+    paddingRight: 2,
+    paddingLeft: 2,
+    backgroundColor: 'white',
+    borderRadius: 16,
+    opacity: 0.8,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    opacity: 50,
   },
 });

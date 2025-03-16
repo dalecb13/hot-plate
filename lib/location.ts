@@ -19,6 +19,21 @@ export const setCurrentLocationIfAvailable = async (
   }
 };
 
+const defaultLocation = {
+  latitude: 37.78825,
+  longitude: -122.4324,
+  latitudeDelta: 0.01,
+  longitudeDelta: 0.01,
+}
+
+const madridMetropolisLocation = {
+  // 40.41888345878195, -3.697263222049402
+  latitude: 40.41888345878195,
+  longitude: -3.697263222049402,
+  latitudeDelta: 0.01,
+  longitudeDelta: 0.01,
+}
+
 export const calculateRegion = ({
   userLatitude,
   userLongitude,
@@ -31,12 +46,7 @@ export const calculateRegion = ({
   destinationLongitude?: number | null;
 }) => {
   if (!userLatitude || !userLongitude) {
-    return {
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.01,
-      longitudeDelta: 0.01,
-    };
+    return madridMetropolisLocation;
   }
 
   if (!destinationLatitude || !destinationLongitude) {

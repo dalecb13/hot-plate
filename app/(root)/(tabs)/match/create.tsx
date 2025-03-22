@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { CityModel, CountryModel } from "../models/location.model";
-import { getCities, getCountries } from "../api/location.api";
+import { CityModel, CountryModel } from "../../../../models/location.model";
+import { getCities, getCountries } from "../../../../api/location.api";
 import { Dropdown } from "react-native-element-dropdown";
 import { FriendModel } from "models/friend.model";
 import { useLocationStore } from "store/location";
@@ -26,7 +26,7 @@ function countryNameAZ( a: CountryModel, b: CountryModel ) {
   return 0;
 }
 
-export default function CreateMatch() {
+export default function CreateMatchPage() {
   const [ showMatchForm, setShowMatchForm ] = useState<boolean>(false);
   const {
     userLongitude,

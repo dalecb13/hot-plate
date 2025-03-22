@@ -1,8 +1,12 @@
 export type MatchModel = {
   id: number
-  groupId: number
-  createdAt: string
-  matchDetails: object
+  address: string
+  country: string
+  city: string
+  budget: number
+  categories: string[]
+  locale: string
+  isActive: boolean
 }
 
 export type CreateMatchModel = {

@@ -37,13 +37,14 @@ export function SessionProvider({ children }: PropsWithChildren) {
     <AuthContext.Provider
       value={{
         signIn: async (email: string, password: string) => {
-          // showToast('signing in')
+          console.log('signing in')
           const response: AuthTokenResponsePassword = await supabase.auth.signInWithPassword({
             email,
             password,
-          })
+          });
 
           if (response.error) {
+            console.log('error signin in', response.error)
             Alert.alert(response.error.message)
             console.warn(response.error)
           } else if (response.data.hasOwnProperty('access_token')) {

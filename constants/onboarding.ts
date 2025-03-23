@@ -1,14 +1,14 @@
 export const onboarding = [
   {
     id: 1,
-    title: "The perfect restaurant is just a tap away!",
+    title: "The perfect restaurant is just one swipe away!",
     description:
-      "Your journey begins with Restaurant Swipe. Find your ideal restaurant effortlessly.",
+      "Your journey begins with Perfect Plate. Find your ideal restaurant effortlessly.",
     // image: images.onboarding1,
   },
   {
     id: 2,
-    title: "Find your ideal meal with Restaurant Swipe",
+    title: "Find your ideal meal with Perfect Plate",
     description:
       "Have fun finding the perfect restaurant with your friends.",
     // image: images.onboarding2,

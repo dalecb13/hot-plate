@@ -1,6 +1,13 @@
 import * as Location from "expo-location";
 import { Dispatch, SetStateAction } from "react";
 
+export type Region = {
+  latitude: number
+  longitude: number
+  latitudeDelta: number
+  longitudeDelta: number
+}
+
 export const setCurrentLocationIfAvailable = async (
   setLocation: Dispatch<SetStateAction<Location.LocationObjectCoords>>,
   setIsLocationUnavailable: Dispatch<SetStateAction<boolean>>,

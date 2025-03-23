@@ -34,8 +34,13 @@ export default function MatchHome() {
         !activeMatches || !activeMatches.length
           ? <View style={!inactiveMatches || !inactiveMatches.length ? localStyles.mainView : localStyles.halfView}>
               <Text>No active match games.</Text>
-              <FontAwesome6 name="exclamation" iconStyle='solid' color={'black'} size={16}/>
-              <Link href="/match/create">Create one?</Link>
+              <FontAwesome6 name="drumstick-bite" iconStyle='solid' size={64} />
+              <Link
+                style={globalStyles.primaryButton}
+                href="/match/create"
+              >
+                Create one?
+              </Link>
             </View>
           : <View>
               <Text>Active games</Text>
@@ -78,6 +83,7 @@ const localStyles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 16,
   },
   halfView: {
     display: 'flex',
@@ -85,5 +91,6 @@ const localStyles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 32,
   },
 });

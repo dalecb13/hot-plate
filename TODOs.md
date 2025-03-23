@@ -1,0 +1,111 @@
+# To Dos
+
+## MVP
+
+- [ ] Create table that tracks activity that costs money; connect to user that made that activity and how much it costs
+  - [ ] Create enums for the activity (UES request)
+  - [ ] Supabase will eventually cost money
+- [ ] Create table that tracks UES requests and responses
+- [ ] Try using banner ads from Google Ad Mob
+  - [ ] Look for alternatives for Google Ad Mob
+  - [ ] Look at subreddit for adops: https://www.reddit.com/r/adops/
+- [ ] Create table that tracks general usage activity
+  - [ ] User created game at x-time from x-location about x-geo fence
+  - [ ] User said yes/no to x-restaurant at x-time about x-match game
+- [ ] MVP tabs
+  - [ ] Create match game
+  - [ ] Match game list (some kind of history or time icon) (home page after log in)
+  - [ ] Settings
+- [ ] Update restaurants table and avoid usage of a general restaurantDetails json column
+  - [ ] “Core” restaurant details should be their own columns, aka what I want to share on the swipe (restaurant details) page
+    - [ ] Name
+    - [ ] Image
+    - [ ] location (calculate distance though)
+    - [ ] Categories
+    - [ ] Budget
+  - [ ] Optional details or meta data can be in JSON
+- [ ] Create match game table
+  - [ ] Relate to user created it
+  - [ ] Relate to other users who were added to the group
+- [ ] Create enum for match show type
+  - [ ] Simple majority
+  - [ ] Everyone must agree
+  - [ ] Fixed number of yesses
+  - [ ] Add to match game metadata
+  - [ ] Update logic to check that consensus is made
+    - [ ] If consensus is made, send a push notification to all users about match
+    - [ ] if push notification is clicked, show matched restaurant details
+- [ ] Give match game creator ability to mark game as finished (as opposed to active or inactive)
+  - [ ] Give participants ability to mark game as active or inactive
+- [ ] Give user ability to set global Settings
+  - [ ] Currency type
+    - [ ] Would probably have to handle conversions then? Or at least use the currency of search location
+  - [ ] Location services
+  - [ ] Default address/coordinates
+  - [ ] Language?
+  - [ ] Store settings data in a table
+  - [ ] Fetch data when user opens the app
+  - [ ] Track when user fetches that data (corresponds to when user opens the app)
+- [ ] Update map view
+  - [ ] Open match game settings
+    - [ ] Tap button on the right side of the screen
+    - [ ] Swipe left on map
+  - [ ] Map zoom/pan settings
+  - [ ] Create button on bottom center of screen that creates a match game
+    - [ ] Button starts disabled initially
+    - [ ] Button is enabled when user picks mandatory settings
+      - [ ] Mandatory settings
+        - [ ] Search area
+      - [ ] Optional settings
+        - [ ] Budget
+        - [ ] Participants
+        - [ ] Categories
+        - [ ] Update logic to handle correspondingly
+    - [ ] Remove need to specify country/city/address and just rely on MapView.addressForCoordinate function
+    - [ ] Split match game settings between mandatory and optional (instead of relying on asterisk)
+    - [ ] Draw indication on map stating center of search area and also bounds of search area (aka corners of the current map view)
+- [ ] Match details screen (under active/inactive/finished matches)
+  - [ ] Show who voted for what?
+  - [ ] Show creator/participant latest activity and overall activity list
+  - [ ] If consensus reached, show restaurant details
+    - [ ] Option to open in Google Maps or Apple Maps for direction
+- [ ] Come up with app name
+  - [ ] Perfect Plate?
+  - [ ] D_________ Dish?
+  - [ ] Food Finder?
+- [ ] Mock UES request
+- [ ] Mock how long it will take to get matches ready
+- [ ] Handle error when UES is down
+- [ ] Handle error when UES limit is reached
+- [ ] Figure out admin/usage analytics page
+- [ ] Figure out how to add participant
+  - [ ] If participant is new and iOS (QR code to install and join game)
+  - [ ] If participant is new and Android (QR code to install plus join game)
+  - [ ] Add ability to refresh to show that user has joined
+  - [ ] If participant already has an account, show QR code to join game
+  - [ ] List past participants
+  - [ ] List preexisting groups
+- [ ] Create waiting screen game to mask the UES fetches (something to do with food? And matches? Like a match 3 game?)
+  - [ ] Can optionally send push notification when game options are ready
+  - [ ] Foodle?
+    - [ ] Compete against participants
+- [ ] Make onboarding skippable if session exists
+- [x] Copy all this to markdown file
+
+---
+
+## Nice to Haves
+
+- [ ] Check splitting
+  - [ ] Associated with a certain game
+  - [ ] Associated menu items with users
+- [ ] Polygon search
+  - [ ] Create button on map view to start creating a polygon on screen
+  - [ ] Long press to put down a vertex of polygon
+  - [ ] Create a MapView layer for drawn polygon overlay
+  - [ ] Create a button to close polygon 
+  - [ ] Create a button to search polygon area
+- [ ] Tutorial that shows how to create a match
+- [ ] Dark mode
+  - [ ] Add to global settings
+    - [ ] Light/dark/system

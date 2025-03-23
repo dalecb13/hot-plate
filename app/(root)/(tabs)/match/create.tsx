@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { CityModel, CountryModel } from "../../../../models/location.model";
 import { getCities, getCountries } from "../../../../api/location.api";
@@ -13,8 +13,9 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { CreateGameModel, createMatch } from "api/match.api";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import globalStyles from "lib/styles";
-import MapView, { PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView, { LatLng, LongPressEvent, PROVIDER_DEFAULT } from 'react-native-maps';
 import { AAAAAA, ASH_GRAY, BACKDROP_COLOR, PRIMARY_COLOR, ZOMP } from 'constants/colors';
+import { getRestaurants } from "api/restaurant.api";
 
 function countryNameAZ( a: CountryModel, b: CountryModel ) {
   if ( a.countryName < b.countryName ){
@@ -27,20 +28,23 @@ function countryNameAZ( a: CountryModel, b: CountryModel ) {
 }
 
 export default function CreateMatchPage() {
+  const mapRef = useRef<MapView>(null);
   const [ showMatchForm, setShowMatchForm ] = useState<boolean>(false);
   const {
     userLongitude,
     userLatitude,
   } = useLocationStore();
-
-  const region = calculateRegion({
+  const [ region, setRegion ] = useState(calculateRegion({
     userLatitude,
     userLongitude,
-  });
+  }));
+
 
   const handleOpenCreateMatchForm = () => {
     setShowMatchForm(true);
   }
+
+  const [ boundingPolygon, setBoundingPolygon ] = useState<LatLng[]>([]);
 
   const [ countries, setCountries ] = useState<CountryModel[]>([]);
   const [isCountriesFocus, setIsCountriesFocus] = useState(false);
@@ -102,25 +106,65 @@ export default function CreateMatchPage() {
     setShowMatchForm(false);
   }
 
+  const handleLongPress = (longPressEvent: LongPressEvent) => {
+    console.log('handleLongPress', longPressEvent);
+    const pressedCoords = longPressEvent.nativeEvent.coordinate;
+    const updatedCoords: LatLng[] = [...boundingPolygon];
+    updatedCoords.push(pressedCoords);
+  }
+
+  const handleFetchRestaurants = async () => {
+    console.log(region);
+    const centerLat = region.latitude + region.latitudeDelta / 2;
+    const centerLong = region.longitude + region.longitudeDelta / 2;
+    console.log('center coordinates', centerLat, centerLong);
+    const approxAddress = await mapRef.current!.addressForCoordinate({
+      latitude: centerLat,
+      longitude: centerLong,
+    });
+    console.log('address', approxAddress);
+    const compositeAddress = `${approxAddress.name}, ${approxAddress.administrativeArea}, ${approxAddress.country}`;
+
+    const locales = getLocales();
+    console.log('locales', locales);
+    const languageCode = getLocales()[0].languageCode;
+    console.log('languageCode', languageCode);
+
+    const locale = `${languageCode}-${approxAddress.countryCode}`;
+    console.log('locale', locale);
+
+    await getRestaurants(region, compositeAddress, locale);
+  }
+
   return (
     <>
       <SafeAreaView style={globalStyles.safeAreaStyle}>
         <MapView
+          ref={mapRef}
           style={localStyles.mapView}
           provider={PROVIDER_DEFAULT}
           tintColor="black"
           mapType="mutedStandard"
           showsPointsOfInterest={false}
           initialRegion={region}
+          onRegionChange={setRegion}
           showsUserLocation={false}
           userInterfaceStyle="light"
           zoomEnabled={true}
+          onLongPress={handleLongPress}
         >
-          <View style={localStyles.buttonContainer}>
+          {/* <View style={localStyles.buttonContainer}>
             <Button
               color="white"
               onPress={handleOpenCreateMatchForm}
               title="Find Restaurant"
+            />
+          </View> */}
+          <View style={localStyles.buttonContainer}>
+            <Button
+              color="white"
+              onPress={handleFetchRestaurants}
+              title="Find Restaurant in Map"
             />
           </View>
         </MapView>
@@ -295,7 +339,6 @@ const localStyles = StyleSheet.create({
     // w-full h-full rounded-2xl
     width: '100%',
     height: '100%',
-    borderRadius: 16,
   },
   buttonContainer: {
     position: 'absolute',

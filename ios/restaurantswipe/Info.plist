@@ -82,6 +82,12 @@
       <string>UIInterfaceOrientationPortrait</string>
       <string>UIInterfaceOrientationPortraitUpsideDown</string>
     </array>
+    <key>UIAppFonts</key>
+    <array>
+      <string>FontAwesome6_Brands.ttf</string>
+      <string>FontAwesome6_Regular.ttf</string>
+      <string>FontAwesome6_Solid.ttf</string>
+    </array>
     <key>UISupportedInterfaceOrientations~ipad</key>
     <array>
       <string>UIInterfaceOrientationPortrait</string>

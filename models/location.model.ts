@@ -1,3 +1,8 @@
+export type Coords = {
+  longitude: number
+  latitude: number
+}
+
 export type CountryModel = {
   id: number
   createdAt: string

@@ -9,8 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@clerk/clerk-expo": "^1.0.7",
-    "@clerk/types": "^4.48.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-vector-icons/common": "^11.0.0",
     "@react-native-vector-icons/fontawesome6": "^6.7.1",
@@ -28,7 +26,6 @@
     "language-name-map": "^0.3.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-json-view-lite": "^2.4.1",
     "react-native": "0.76.7",
     "react-native-element-dropdown": "^2.12.4",
     "react-native-localize": "^3.4.1",

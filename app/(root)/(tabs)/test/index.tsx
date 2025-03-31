@@ -1,8 +1,6 @@
 import { Button, Input, Text } from "@rneui/themed";
 import { useState } from "react";
 import { View } from "react-native";
-import { JsonView, allExpanded, darkStyles, defaultStyles } from 'react-json-view-lite';
-import 'react-json-view-lite/dist/index.css';
 
 import { Data, getAutoComplete } from "../../../../api/restaurants/tripadvisor-com";
 
@@ -37,8 +35,6 @@ export default function TestHome() {
         title="Get Geo ID"
         onPress={() => autoComplete()}
       />
-
-      <JsonView data={geoIds} shouldExpandNode={allExpanded} style={defaultStyles} />
     </View>
   )
 }

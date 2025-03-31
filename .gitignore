@@ -46,3 +46,8 @@ data/
 /android/build
 /ios/**/*xcuserdata*
 /ios/**/*xcshareddata*
+
+# Expo
+.expo
+dist/
+web-build/

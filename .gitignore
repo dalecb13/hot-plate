@@ -51,3 +51,7 @@ data/
 .expo
 dist/
 web-build/
+
+# CNG
+android
+ios
